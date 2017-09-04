@@ -11,8 +11,8 @@ class Follow
     key :f_id, :type => String
   end
 
-  belongs_to :followable, :polymorphic => true
-  belongs_to :following, :polymorphic => true
+  belongs_to :followable, :polymorphic => true, :optional => true
+  belongs_to :following, :polymorphic => true, :optional => true
 
   scope :by_type, lambda { |type| where(:f_type => type.safe_capitalize) }
   scope :by_model, lambda { |model| where(:f_id => model.id.to_s).by_type(model.class.name) }
